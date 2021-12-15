@@ -69,3 +69,45 @@ Promise.all([page,food_vars])
 .then((result)=>{
    console.log(result);
 })
+
+// async_await
+
+function login(email,password){
+   return new Promise((resolve,reflect)=>{
+         setTimeout(()=>{
+            console.log("Welcome")
+            resolve({emailValue: email, passwordValue: password})
+         },1000);
+      })
+   }
+ 
+ function foodOrder(email){
+  return new Promise((resolve,reflect)=>{
+      setTimeout(()=>{
+         console.log(email)
+         resolve(["veg-food","non-veg-food"])
+      },2000)
+   })
+ }
+ 
+ function variety(foodvariety){
+   return new Promise((resolve,reflect)=>{
+      setTimeout(()=>{
+         console.log(foodvariety)
+         resolve(["Briyani","Plain-Rice"]);
+      },1000)
+   })
+ }
+
+ async function checking(){
+    try{
+       const user = await login("abc@gmail.com",9876543210)
+       const food = await foodOrder(user)
+       const dish = await variety(food)
+    }
+    catch(err){
+       console.log("error",err)
+    }
+ }
+ 
+
